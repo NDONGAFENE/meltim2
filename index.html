@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MELTIM 2 — Gestion scolaire de la maternelle au collège · Pro-Technologie</title>
+<meta name="description" content="MELTIM 2 : logiciel de gestion scolaire pour les écoles primaires et collèges au Gabon. Inscriptions, mensualités, bus, tenues, bulletins et factures. Développé par Pro-Technologie.">
+<style>
+:root{--nav:#4A1568;--nav2:#6D2E96;--acc:#8B2CB4;--gold:#E0A82E;--gold-d:#B7841A;--bg:#F6F3F9;--ink:#2A1240;--mut:#7A6B85;--line:#E5DBEC;--ok:#1B9C5B;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:var(--acc);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto}
+.flag{height:6px;display:flex}.flag i{flex:1}.flag .v{background:#009a44}.flag .j{background:var(--gold)}.flag .b{background:#003399}
+
+nav.top{background:#fff;padding:14px 0;box-shadow:0 2px 8px rgba(0,0,0,.04);position:sticky;top:0;z-index:100}
+nav.top .wrap{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+nav.top .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--nav);font-size:17px}
+nav.top .brand .lg{width:38px;height:38px;background:linear-gradient(135deg,var(--nav),var(--acc));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px}
+nav.top .links{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+nav.top .links a{color:var(--nav);font-weight:600;font-size:14px}
+nav.top .cta{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#3a2b06;padding:10px 20px;border-radius:9px;font-weight:700;font-size:14px;box-shadow:0 4px 12px rgba(224,168,46,.4)}
+nav.top .cta:hover{text-decoration:none;transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,#160820 0%,#2A1240 40%,#4A1568 100%);color:#fff;padding:60px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(224,168,46,.2),transparent 70%);pointer-events:none}
+.hero .wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:16px;letter-spacing:-.5px}
+.hero h1 span{color:var(--gold);display:block;font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:8px}
+.hero p.lead{font-size:17px;opacity:.9;margin-bottom:26px;line-height:1.6;max-width:600px}
+.hero .badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.hero .badges span{background:rgba(255,255,255,.1);border:1px solid rgba(224,168,46,.3);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#3a2b06;padding:14px 28px;border-radius:10px;font-weight:800;font-size:15px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(224,168,46,.4);transition:transform .15s}
+.hero .btn:hover{text-decoration:none;transform:translateY(-2px)}
+.hero .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.3);color:#fff;box-shadow:none}
+.hero .visual{background:#fff;border-radius:18px;padding:22px;color:var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.4);transform:rotate(-2deg)}
+.hero .visual .head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:2px solid var(--line)}
+.hero .visual .head .ic{width:40px;height:40px;background:linear-gradient(135deg,var(--nav),var(--acc));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px}
+.hero .visual .head b{color:var(--nav);font-size:14px;line-height:1.2}
+.hero .visual .head .sb{font-size:10.5px;color:var(--mut)}
+.hero .visual .body{padding:12px 0}
+.hero .visual .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.hero .visual .kpi div{background:#F6F3F9;padding:10px;border-radius:8px;text-align:center}
+.hero .visual .kpi .n{font-size:22px;font-weight:800;color:var(--nav)}
+.hero .visual .kpi .l{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
+.hero .visual ul{list-style:none;padding:0;font-size:12.5px}
+.hero .visual ul li{padding:4px 0;color:var(--nav);display:flex;align-items:center;gap:6px}
+.hero .visual ul li::before{content:'✓';color:var(--ok);font-weight:800}
+
+section{padding:60px 24px}
+section .wrap{max-width:1200px;margin:0 auto}
+.section-title{text-align:center;margin-bottom:44px}
+.section-title h2{font-size:32px;color:var(--nav);margin-bottom:8px;font-weight:800}
+.section-title p{color:var(--mut);font-size:15px;max-width:600px;margin:0 auto}
+.section-title .k{color:var(--gold-d);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:block}
+
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.feat{background:var(--card);border-radius:14px;padding:26px;border:1px solid var(--line);transition:transform .2s, box-shadow .2s}
+.feat:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(74,21,104,.08)}
+.feat .ic{width:50px;height:50px;background:linear-gradient(135deg,var(--nav),var(--acc));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px;color:#fff}
+.feat h3{color:var(--nav);font-size:17px;margin-bottom:8px;font-weight:800}
+.feat p{color:var(--mut);font-size:14px;line-height:1.65}
+.feat.gold .ic{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#3a2b06}
+
+.cycles{background:linear-gradient(180deg,#fff 0%,#F6F3F9 100%);padding:60px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cycles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.cycle{background:var(--card);border-radius:14px;padding:26px;border-top:4px solid var(--acc)}
+.cycle.c1{border-top-color:#E67E22}
+.cycle.c2{border-top-color:#3498DB}
+.cycle.c3{border-top-color:#9B59B6}
+.cycle .em{font-size:42px;margin-bottom:10px}
+.cycle h4{color:var(--nav);font-size:20px;margin-bottom:4px;font-weight:800}
+.cycle .rl{font-size:12px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.4px;margin-bottom:14px}
+.cycle ul{list-style:none;padding:0;font-size:13.5px;color:var(--ink)}
+.cycle ul li{padding:4px 0;position:relative;padding-left:20px}
+.cycle ul li::before{content:'•';position:absolute;left:0;color:var(--acc);font-weight:800;font-size:18px}
+
+.steps{background:var(--nav);color:#fff;padding:60px 24px}
+.steps .section-title h2{color:#fff}
+.steps .section-title p{color:rgba(255,255,255,.75)}
+.steps .section-title .k{color:var(--gold)}
+.step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px;position:relative}
+.step .num{position:absolute;top:-15px;left:20px;background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#3a2b06;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;box-shadow:0 4px 12px rgba(224,168,46,.4)}
+.step h4{margin-top:12px;margin-bottom:8px;font-size:16px;color:#fff}
+.step p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6}
+
+.cta-final{background:linear-gradient(135deg,#4A1568,#8B2CB4);color:#fff;padding:70px 24px;text-align:center}
+.cta-final h2{font-size:30px;margin-bottom:12px}
+.cta-final p{font-size:16px;opacity:.9;margin-bottom:26px;max-width:600px;margin-left:auto;margin-right:auto}
+.cta-final .btn{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#3a2b06;padding:14px 32px;border-radius:10px;font-weight:800;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.cta-final .btn:hover{text-decoration:none}
+.contact-info{margin-top:30px;background:rgba(255,255,255,.08);border-radius:14px;padding:22px;max-width:600px;margin-left:auto;margin-right:auto}
+.contact-info b{color:var(--gold);font-size:12px;letter-spacing:.4px;text-transform:uppercase}
+.contact-info .phone{font-size:22px;font-weight:800;margin:8px 0}
+.contact-info a{color:#fff}
+
+footer{background:#160820;color:rgba(255,255,255,.6);padding:30px 24px;text-align:center;font-size:12px}
+footer a{color:var(--gold)}
+
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;text-align:center}
+  .hero .actions{justify-content:center}
+  .hero .badges{justify-content:center}
+  .hero h1{font-size:32px}
+  .hero .visual{transform:none;margin:0 auto;max-width:340px}
+  .section-title h2{font-size:24px}
+  nav.top .links a:not(.cta){display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a href="#" class="brand"><span class="lg">M</span><span>MELTIM 2</span></a>
+    <div class="links">
+      <a href="#fonctionnalites">Fonctionnalités</a>
+      <a href="#cycles">Cycles</a>
+      <a href="#etapes">Comment ça marche</a>
+      <a href="#contact">Contact</a>
+      <a href="index-app.html" class="cta">Accéder à l'appli →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="flag"><i class="v"></i><i class="j"></i><i class="b"></i></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1><span>GESTION SCOLAIRE</span>MELTIM 2</h1>
+      <p class="lead">La solution complète de gestion pour les <b>écoles primaires et collèges</b> au Gabon. Inscriptions, mensualités, bus, tenues, bulletins et factures — tout dans un seul logiciel.</p>
+      <div class="badges">
+        <span>🇬🇦 Aux couleurs du Gabon</span>
+        <span>🏫 Maternelle → Collège</span>
+        <span>🧾 Factures PDF</span>
+        <span>📄 Bulletins officiels</span>
+        <span>🔒 Sécurisé</span>
+      </div>
+      <div class="actions">
+        <a href="index-app.html" class="btn">🚀 Accéder à l'application</a>
+        <a href="#fonctionnalites" class="btn ghost">Découvrir</a>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="head"><div class="ic">M</div><div><b>MELTIM 2</b><br><span class="sb">École Saint-Exupéry</span></div></div>
+      <div class="body">
+        <div class="kpi">
+          <div><div class="n">248</div><div class="l">Élèves</div></div>
+          <div><div class="n">12</div><div class="l">Classes</div></div>
+        </div>
+        <ul>
+          <li>Maternelle à 3ème</li>
+          <li>Facturation intégrée</li>
+          <li>Bulletins PDF officiels</li>
+          <li>Frais paramétrables</li>
+          <li>Logo école personnalisé</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fonctionnalites">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="k">FONCTIONNALITÉS</span>
+      <h2>Tout ce dont votre école a besoin</h2>
+      <p>Une plateforme complète pensée pour les écoles primaires, maternelles et collèges gabonais.</p>
+    </div>
+    <div class="features">
+      <div class="feat gold"><div class="ic">👦</div><h3>Fiches élèves complètes</h3><p>Nom, prénoms, sexe, date de naissance, classe, parents/tuteurs, téléphone, adresse. Historique complet par élève.</p></div>
+      <div class="feat"><div class="ic">🏫</div><h3>Classes personnalisables</h3><p>12 classes par défaut (PS à 3ème). L'admin peut ajouter, renommer, supprimer et fixer une mensualité par classe.</p></div>
+      <div class="feat"><div class="ic">📝</div><h3>Inscriptions rapides</h3><p>Sélection multi-articles (inscription, tenue, fournitures) et facture générée automatiquement.</p></div>
+      <div class="feat gold"><div class="ic">💰</div><h3>Frais paramétrables</h3><p>L'admin fixe les prix : inscription, mensualité, bus, tenue d'école, tenue de sport, fournitures. Ajoutez tous vos articles.</p></div>
+      <div class="feat"><div class="ic">🧾</div><h3>Facturation PDF</h3><p>Factures officielles avec logo de l'école, coordonnées, numérotation unique et mention « Développé par Pro-Technologie ».</p></div>
+      <div class="feat"><div class="ic">💳</div><h3>Suivi des paiements</h3><p>Espèces, chèque, virement, Mobile Money. Solde à percevoir en temps réel par élève.</p></div>
+      <div class="feat gold"><div class="ic">🚌</div><h3>Frais de bus mensuels</h3><p>Frais périodiques (bus, cantine) facturés automatiquement chaque mois pour les élèves concernés.</p></div>
+      <div class="feat"><div class="ic">👕</div><h3>Tenues d'école & sport</h3><p>Vente de tenues avec suivi et facturation. Ajoutez tous les articles que l'école vend.</p></div>
+      <div class="feat"><div class="ic">🎯</div><h3>Notes & bulletins</h3><p>Saisie par classe, matière et trimestre. Bulletins PDF avec en-tête école, moyennes et mention automatique.</p></div>
+      <div class="feat gold"><div class="ic">🎨</div><h3>Logo & coordonnées</h3><p>L'admin télécharge le logo de l'école et paramètre nom, adresse, téléphone, e-mail — visibles partout.</p></div>
+      <div class="feat"><div class="ic">📊</div><h3>Tableau de bord</h3><p>KPI en direct : nombre d'élèves, répartition par cycle, montant facturé, solde à percevoir.</p></div>
+      <div class="feat"><div class="ic">🔑</div><h3>Licence sécurisée</h3><p>Système d'activation par clé. Essai gratuit 30 jours puis plans Durée ou Illimité à vie.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cycles" id="cycles">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="k">TROIS CYCLES</span>
+      <h2>De la maternelle au collège</h2>
+      <p>MELTIM 2 couvre l'ensemble du parcours scolaire, avec des matières adaptées à chaque cycle.</p>
+    </div>
+    <div class="cycles-grid">
+      <div class="cycle c1">
+        <div class="em">🧸</div>
+        <h4>Maternelle</h4>
+        <div class="rl">Petite → Moyenne → Grande section</div>
+        <ul>
+          <li>Éveil</li>
+          <li>Graphisme</li>
+          <li>Langage</li>
+          <li>Mathématiques</li>
+          <li>Motricité</li>
+          <li>Éducation civique</li>
+        </ul>
+      </div>
+      <div class="cycle c2">
+        <div class="em">✏️</div>
+        <h4>Primaire</h4>
+        <div class="rl">CP · CE1 · CE2 · CM1 · CM2</div>
+        <ul>
+          <li>Français · Mathématiques</li>
+          <li>Éveil scientifique</li>
+          <li>Histoire-Géographie</li>
+          <li>Éducation civique</li>
+          <li>Anglais · Dessin · Chant</li>
+          <li>Éducation physique</li>
+        </ul>
+      </div>
+      <div class="cycle c3">
+        <div class="em">📚</div>
+        <h4>Collège</h4>
+        <div class="rl">6ème · 5ème · 4ème · 3ème</div>
+        <ul>
+          <li>Français · Mathématiques</li>
+          <li>Anglais · Espagnol</li>
+          <li>Physique-Chimie · SVT</li>
+          <li>Histoire-Géographie</li>
+          <li>Informatique · EPS</li>
+          <li>Arts plastiques · Musique</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="etapes">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="k">DÉMARRAGE RAPIDE</span>
+      <h2>4 étapes pour être opérationnel</h2>
+      <p>De la mise en service à la génération des premiers bulletins, en moins d'une heure.</p>
+    </div>
+    <div class="step-grid">
+      <div class="step">
+        <div class="num">1</div>
+        <h4>Créer le compte admin</h4>
+        <p>Renseignez le nom de votre école, votre identifiant et mot de passe. 12 classes et 5 frais par défaut sont créés.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4>Paramétrer l'école</h4>
+        <p>Ajoutez le logo, l'adresse, les coordonnées. Fixez les mensualités par classe et les prix des articles vendus.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4>Inscrire les élèves</h4>
+        <p>Saisissez chaque élève, sélectionnez ses articles (inscription, tenue, bus) — la facture est générée automatiquement.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h4>Vie scolaire</h4>
+        <p>Enregistrez les paiements, saisissez les notes trimestrielles, imprimez les bulletins — tout se fait en un clic.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contact">
+  <div class="wrap">
+    <h2>Prêt à moderniser votre école ?</h2>
+    <p>Rejoignez les écoles gabonaises qui font confiance à MELTIM 2 pour leur gestion administrative et pédagogique.</p>
+    <a href="index-app.html" class="btn">🚀 Accéder à MELTIM 2</a>
+    <div class="contact-info">
+      <b>Contact & Support — Pro-Technologie</b>
+      <div class="phone">📞 077 92 54 58 · 066 92 54 58</div>
+      <div><a href="mailto:ndongafene@protechnologie.com">ndongafene@protechnologie.com</a></div>
+      <div style="margin-top:10px;font-size:12.5px;opacity:.85">📍 Akanda, Estuaire, Gabon</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <p><b>MELTIM 2</b> · Logiciel développé par <b style="color:var(--gold)">Pro-Technologie</b></p>
+    <p style="margin-top:6px">© 2026 · Tous droits réservés · 🇬🇦 Fait au Gabon</p>
+  </div>
+</footer>
+
+</body>
+</html>
